@@ -38,7 +38,7 @@ class MAIN(QMainWindow):
         self.lbl_map.resize(MAIN.MAP_W, MAIN.MAP_H)
         self.show()
 
-    def viewNone(self):
+    def viewNoSnapShoot(self):
         pixmap = QPixmap(NULL_IMG_PATH)
         pixmap = pixmap.scaled(MAIN.W_DISP, MAIN.H_DISP, Qt.KeepAspectRatio)
         self.lbl_display.setPixmap(pixmap)
