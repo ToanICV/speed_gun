@@ -27,6 +27,24 @@ def getMapImage(device: str, lat: float, lng: float, date:str):
     
 
 def pushDataToServer(data):
+    '''
+    Data description:
+    {
+        "Name" : "tên ảnh",
+        "Data" : "data:image/png;base64,...",
+        "VehicleType" : "car",
+        "LicensePlate" : "29-x10 32203",
+        "Speed" : 40,
+        "SpeedLimit" : 30,
+        "Distance" : 100,
+        "CaptureDirection" : "Front",
+        "RecordTime" : "20/07/2023 16:30:30",
+        "Latitude" : 20.998579,
+        "Longitude" : 105.813437,
+        "RoadAddress" : "nguyen trai",
+        "DeviceInfo": "serial number"
+    }
+    '''
     path = "http://115.146.126.73:7702/api/v1/violation/create"
     resp = requests.post(path, json=data)
     return resp.json()
