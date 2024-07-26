@@ -43,7 +43,8 @@
     </property>
     <property name="font">
      <font>
-      <pointsize>19</pointsize>
+      <family>MS Shell Dlg 2</family>
+      <pointsize>18</pointsize>
       <weight>50</weight>
       <italic>false</italic>
       <bold>false</bold>
@@ -109,7 +110,7 @@
     </property>
     <widget class="QWidget" name="tab_view">
      <attribute name="title">
-      <string>XEM</string>
+      <string>HOME</string>
      </attribute>
      <widget class="QGroupBox" name="groupBox">
       <property name="geometry">
@@ -156,9 +157,9 @@
       <widget class="QLabel" name="lbl_map">
        <property name="geometry">
         <rect>
-         <x>530</x>
+         <x>519</x>
          <y>20</y>
-         <width>180</width>
+         <width>190</width>
          <height>290</height>
         </rect>
        </property>
@@ -452,13 +453,223 @@ p, li { white-space: pre-wrap; }
     </widget>
     <widget class="QWidget" name="tab_pending">
      <attribute name="title">
-      <string>CHƯA GỬI</string>
+      <string>CHỜ GỬI</string>
      </attribute>
     </widget>
     <widget class="QWidget" name="tab_setting">
      <attribute name="title">
       <string>CÀI ĐẶT</string>
      </attribute>
+     <widget class="QGroupBox" name="groupBox_3">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>320</y>
+        <width>261</width>
+        <height>111</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="title">
+       <string>Chức năng</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <widget class="QPushButton" name="btn_getMap">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>40</y>
+         <width>221</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Lấy ảnh bản đồ</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_4">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>261</width>
+        <height>321</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="title">
+       <string>Trạng thái</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <widget class="QLabel" name="label_7">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>30</y>
+         <width>101</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Internet 4G</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_8">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>80</y>
+         <width>101</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Định vị GPS</string>
+       </property>
+      </widget>
+      <widget class="QTextEdit" name="te_4GStatus">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>30</y>
+         <width>71</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QTextEdit" name="te_GpsStatus">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>80</y>
+         <width>71</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_checkService">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>140</y>
+         <width>221</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Kiểm tra service</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_restart4GService">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>200</y>
+         <width>221</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Restart 4G service</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_restartGpsService">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>260</y>
+         <width>221</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Restart GPS service</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_5">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>0</y>
+        <width>471</width>
+        <height>431</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="title">
+       <string>Cấu hình</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <widget class="QTextEdit" name="te_deviceID">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>30</y>
+         <width>291</width>
+         <height>41</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_11">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>30</y>
+         <width>101</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Mã thiết bị</string>
+       </property>
+      </widget>
+     </widget>
     </widget>
    </widget>
   </widget>

@@ -9,9 +9,11 @@ def getMapImage(device: str, lat: float, lng: float, date:str):
     '''
 
     path = f"http://115.146.126.73:7702/api/v1/plan-patrol/map-by-device?DeviceInfo={device}&Latitude={lat}&Longitude={lng}&DateWork={date}"
-
-    resp = requests.get(path)
-    if (resp.status_code == 200):
+    try:
+        resp = requests.get(path)
+    except Exception as e:
+        resp = None 
+    if (resp != None) and (resp.status_code == 200):
         b64_img_data =  resp.json()['data']['image'][22:]
         image_data_bytes = base64.b64decode(''.join(b64_img_data))
         # img_name = getImageName(resp.json()['time'])
