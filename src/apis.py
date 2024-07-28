@@ -3,6 +3,23 @@ import base64
 from .utils import *
 
 
+dummyViolationData = {
+        "Name" : "240725_123456.jpg",
+        "Data" : "data:image/jpg;base64,",
+        "VehicleType" : "car",
+        "LicensePlate" : "51B25121",
+        "Speed" : 71,
+        "SpeedLimit" : 60,
+        "Distance" : 100,
+        "CaptureDirection" : "Front",
+        "RecordTime" : "28/07/2024 14:54:56",
+        "Latitude" : 20.998579,
+        "Longitude" : 105.813437,
+        "RoadAddress" : "Hoang Quoc Viet",
+        "DeviceInfo": 'TB1',
+        "DepartmentCode": "DV2"
+    }
+
 def getMapImage(device: str, lat: float, lng: float, date:str):
     '''
     Example path: http://115.146.126.73:7702/api/v1/plan-patrol/map-by-device?DeviceInfo=TB1&Latitude=21.046242&Longitude=105.787002&DateWork=26/07/2024
@@ -16,7 +33,6 @@ def getMapImage(device: str, lat: float, lng: float, date:str):
     if (resp != None) and (resp.status_code == 200):
         b64_img_data =  resp.json()['data']['image'][22:]
         image_data_bytes = base64.b64decode(''.join(b64_img_data))
-        # img_name = getImageName(resp.json()['time'])
         img_path = f"logs\images\processing\map.png"
         with open(img_path, 'wb+') as image_file:
             image_file.write(image_data_bytes)
@@ -35,7 +51,7 @@ def pushDataToServer(data):
         "Name" : "tên ảnh",
         "Data" : "data:image/png;base64,...",
         "VehicleType" : "car",
-        "LicensePlate" : "29-x10 32203",
+        "LicensePlate" : "29H332203",
         "Speed" : 40,
         "SpeedLimit" : 30,
         "Distance" : 100,
@@ -44,15 +60,22 @@ def pushDataToServer(data):
         "Latitude" : 20.998579,
         "Longitude" : 105.813437,
         "RoadAddress" : "nguyen trai",
-        "DeviceInfo": "serial number"
+        "DeviceInfo": "serial number",
+        "DepartmentCode": "mã đơn vị"
     }
     '''
     path = "http://115.146.126.73:7702/api/v1/violation/create"
     resp = requests.post(path, json=data)
     return resp.json()
 '''
+
 Usage:
     resp = getMapImage("TB1",21.046242,105.787002,"26/07/2024")
     print(resp)
 
+    imgData = imgToBase64('logs/images/processing/240725_123456.jpg')
+    dummyViolationData['Data'] = dummyViolationData['Data'] + imgData
+    resp = pushDataToServer(dummyViolationData)
+    print(resp)
 '''
+
