@@ -1,4 +1,5 @@
 {
     "deviceID": "TB1",
-    "departmentCode": "DV2"
+    "departmentCode": "DV2",
+    "bleMacAddr": "12:34:56:78:90"
 }

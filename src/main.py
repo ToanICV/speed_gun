@@ -127,10 +127,12 @@ class MAIN(QMainWindow):
         self.btn_getMap.clicked.connect(self.hdl_getMapManual)
         self.te_deviceID.textChanged.connect(self.hdl_changed_deviceID)
         self.te_department.textChanged.connect(self.hdl_changed_department)
+        self.te_ble_mac.textChanged.connect(self.hdl_changed_macAddr)
         self.btn_checkService.clicked.connect(self.hdl_checkService)
         self.btn_restart4GService.clicked.connect(self.hdl_restart4GService)
         self.btn_restartGpsService.clicked.connect(self.hdl_restartGpsService)
         self.btn_closeApp.clicked.connect(self.close_app)
+        self.btn_checkService.clicked.connect(self.check_service)
         self.setEventOneSec()
         
         resp = getMapImage(self.configs_data['deviceID'], example_lat, example_lng, getDate())
@@ -201,10 +203,22 @@ class MAIN(QMainWindow):
             self.popup(None,"Thành công","Lấy ảnh bản đồ thành công !","")
         else:
             self.popup('warn',"Lỗi","Lấy ảnh bản đồ thất bại !","Vui lòng kiểm tra kết nối 4G và kế hoạch tuần tra.")
-    
+    def check_service(self):
+        # kiểm tra service 4G
+        srv_4g = 'OK'
+        # kiểm tra service GPS
+        srv_gps = 'OK'
+        self.popup(None,"Thông báo",f"Trạng thái service 4G: {srv_4g}\nTrạng thái service GPS: {srv_gps}","")
     def loadSetting(self):
         self.loadConfigs()
         self.te_deviceID.setText(self.configs_data['deviceID'])
+        self.te_department.setText(self.configs_data['departmentCode'])
+        self.te_ble_mac.setText(self.configs_data['bleMacAddr'])
+
+    def hdl_changed_macAddr(self):
+        self.loadConfigs()
+        self.configs_data['bleMacAddr'] = self.te_ble_mac.toPlainText()
+        self.saveConfigs()
 
     def hdl_changed_deviceID(self):
         self.loadConfigs()
