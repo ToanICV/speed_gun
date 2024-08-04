@@ -32,10 +32,10 @@ def except_hook(cls, exception, traceback):
     msgBox.exec()
 
 class MAIN(QMainWindow):
-    IMG_W   = 525
-    IMG_H   = 290
-    MAP_W   = 190
-    MAP_H   = 290
+    IMG_W   = 840
+    IMG_H   = 470
+    MAP_W   = 290
+    MAP_H   = 470
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setWindowIcon(QIcon('assets/icon.png'))
@@ -135,7 +135,7 @@ class MAIN(QMainWindow):
 
     def viewMap(self, img_path):
         pixmap = QPixmap(img_path)
-        pixmap = pixmap.scaled(MAIN.MAP_W*2, MAIN.MAP_H*2, Qt.KeepAspectRatio)  # zoom 2x
+        pixmap = pixmap.scaled(MAIN.MAP_W, MAIN.MAP_H, Qt.KeepAspectRatio)  # zoom 2x
         self.lbl_map.setPixmap(pixmap)
         self.lbl_map.resize(MAIN.MAP_W, MAIN.MAP_H)
         self.show()
