@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1140</width>
-    <height>680</height>
+    <width>780</width>
+    <height>460</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1140</width>
-    <height>680</height>
+    <width>780</width>
+    <height>460</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>1140</width>
-    <height>680</height>
+    <width>780</width>
+    <height>460</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -29,10 +29,10 @@
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>10</x>
       <y>0</y>
-      <width>1141</width>
-      <height>651</height>
+      <width>761</width>
+      <height>441</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -117,8 +117,8 @@
        <rect>
         <x>10</x>
         <y>0</y>
-        <width>1081</width>
-        <height>501</height>
+        <width>711</width>
+        <height>311</height>
        </rect>
       </property>
       <property name="font">
@@ -137,9 +137,9 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>30</y>
-         <width>841</width>
-         <height>471</height>
+         <y>20</y>
+         <width>525</width>
+         <height>290</height>
         </rect>
        </property>
        <property name="font">
@@ -157,10 +157,10 @@
       <widget class="QLabel" name="lbl_map">
        <property name="geometry">
         <rect>
-         <x>839</x>
-         <y>30</y>
-         <width>241</width>
-         <height>471</height>
+         <x>519</x>
+         <y>20</y>
+         <width>190</width>
+         <height>290</height>
         </rect>
        </property>
        <property name="font">
@@ -180,9 +180,9 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>500</y>
+        <y>310</y>
         <width>711</width>
-        <height>151</height>
+        <height>131</height>
        </rect>
       </property>
       <property name="font">
@@ -201,7 +201,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>40</y>
+         <y>30</y>
          <width>161</width>
          <height>41</height>
         </rect>
@@ -219,7 +219,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>100</y>
+         <y>80</y>
          <width>151</width>
          <height>41</height>
         </rect>
@@ -237,7 +237,7 @@
        <property name="geometry">
         <rect>
          <x>420</x>
-         <y>100</y>
+         <y>80</y>
          <width>151</width>
          <height>41</height>
         </rect>
@@ -255,7 +255,7 @@
        <property name="geometry">
         <rect>
          <x>420</x>
-         <y>40</y>
+         <y>30</y>
          <width>151</width>
          <height>41</height>
         </rect>
@@ -273,7 +273,7 @@
        <property name="geometry">
         <rect>
          <x>660</x>
-         <y>40</y>
+         <y>30</y>
          <width>51</width>
          <height>41</height>
         </rect>
@@ -291,7 +291,7 @@
        <property name="geometry">
         <rect>
          <x>660</x>
-         <y>100</y>
+         <y>80</y>
          <width>51</width>
          <height>41</height>
         </rect>
@@ -309,7 +309,7 @@
        <property name="geometry">
         <rect>
          <x>180</x>
-         <y>40</y>
+         <y>30</y>
          <width>201</width>
          <height>41</height>
         </rect>
@@ -341,7 +341,7 @@ p, li { white-space: pre-wrap; }
        <property name="geometry">
         <rect>
          <x>180</x>
-         <y>100</y>
+         <y>80</y>
          <width>201</width>
          <height>41</height>
         </rect>
@@ -376,7 +376,7 @@ p, li { white-space: pre-wrap; }
        <property name="geometry">
         <rect>
          <x>570</x>
-         <y>40</y>
+         <y>30</y>
          <width>81</width>
          <height>41</height>
         </rect>
@@ -411,7 +411,7 @@ p, li { white-space: pre-wrap; }
        <property name="geometry">
         <rect>
          <x>570</x>
-         <y>100</y>
+         <y>80</y>
          <width>81</width>
          <height>41</height>
         </rect>
