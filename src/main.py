@@ -17,6 +17,8 @@ TODO
 [x] Hiển thị trạng thái call API.
 [ ] Check và restart service 4G và GPS trong Setting.
 [x] Nút getMapImage thủ công trong Setting.
+[ ] Hiển thị log
+[ ] Đơn vị thực hiện - SETTING
 '''
 
 example_lat = 21.046242
@@ -175,6 +177,8 @@ class MAIN(QMainWindow):
 
     def hdl_restartGpsService(self):
         pass
+
+
     # =============================== HẾT MÀN SETTING
 
 if __name__ == "__main__":
