@@ -5,11 +5,13 @@ Usage: python -m src.main
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox
 from PyQt5.uic import loadUi
-from PyQt5.QtGui import QPixmap, QImage, QFont, QIcon
-from PyQt5.QtCore import Qt, QThread, pyqtSignal, QByteArray, QTimer
+from PyQt5.QtGui import QPixmap, QImage, QFont, QIcon, QTextCursor
+from PyQt5.QtCore import Qt, QThread, pyqtSignal, QByteArray, QTimer, QTime
 from .define import *
 from .apis import *
 import json
+import copy
+import requests
 
 '''
 TODO
@@ -18,7 +20,7 @@ TODO
 [ ] Check và restart service 4G và GPS trong Setting.
 [x] Nút getMapImage thủ công trong Setting.
 [ ] Hiển thị log
-[ ] Đơn vị thực hiện - SETTING
+[x] Đơn vị thực hiện - SETTING
 '''
 
 example_lat = 21.046242
@@ -34,16 +36,23 @@ def except_hook(cls, exception, traceback):
     msgBox.exec()
 
 class MAIN(QMainWindow):
-    IMG_W   = 840
-    IMG_H   = 470
-    MAP_W   = 290
-    MAP_H   = 470
+    IMG_W       = 840
+    IMG_H       = 470
+    MAP_W       = 290
+    MAP_H       = 470
+    eventsList  = []
+    glb_cnt     = 0
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setWindowIcon(QIcon('assets/icon.png'))
         loadUi(MAIN_UI_PATH, self)
         self.connectSignalsSlots()
         self.speedLimit     = 0
+
+    def appendEvents(self, logs):
+        current_time = QTime.currentTime()
+        label_time = current_time.toString('hh:mm:ss')
+        self.eventsList.append(f"{label_time} -> {logs}\n")
 
     def loadConfigs(self):
         with open(CONFIGS_PATH) as fd:
@@ -61,12 +70,38 @@ class MAIN(QMainWindow):
         # update the timer every second
         self.timer.start(1000)
 
+    def check_network_connection(self, url='http://www.google.com', timeout=5):
+        try:
+            response = requests.get(url, timeout=timeout)
+            if response.status_code == 200:
+                return 1
+            else:
+                return response.status_code
+        except requests.ConnectionError:
+            return 0
+        except requests.Timeout:
+            return -1
+
     def oneSecTask(self):
+        if (len(self.eventsList) > 0):
+            new_eventsList = copy.deepcopy(self.eventsList)
+            self.eventsList.clear()
+            for event in new_eventsList:
+                self.te_status.insertPlainText(event)
+                self.te_status.moveCursor(QTextCursor.End)
+            del new_eventsList
+
         # @TODO: kiểm tra trạng thái GPS
 
         # @TODO: kiểm tra trạng thái 4G
+        self.glb_cnt += 1
+        if (self.glb_cnt % 60 == 1):
+            if (self.check_network_connection() == 1):
+                self.setTextEdit(self.te_4GStatus,"OK", 'green')
+            else:
+                self.setTextEdit(self.te_4GStatus,"Không", 'red')
+                self.appendEvents("Không có kết nối mạng.")
 
-        pass
 
     def popup(self, typeMsg: str, title: str, content: str, hint: str):
         msg = QMessageBox()
@@ -84,22 +119,29 @@ class MAIN(QMainWindow):
         
     def connectSignalsSlots(self):
         self.viewSnapshoot(EXAMPLE_IMG_PATH)
-        self.viewMap(EXAMPLE_MAP_PATH)
+        self.viewMap(MAP_PATH)
         self.loadConfigs()
         self.loadSetting()
         self.setTextEdit(self.te_speedLimit,'0','red')
         self.loadDefaultDisplay()
         self.btn_getMap.clicked.connect(self.hdl_getMapManual)
         self.te_deviceID.textChanged.connect(self.hdl_changed_deviceID)
+        self.te_department.textChanged.connect(self.hdl_changed_department)
         self.btn_checkService.clicked.connect(self.hdl_checkService)
         self.btn_restart4GService.clicked.connect(self.hdl_restart4GService)
         self.btn_restartGpsService.clicked.connect(self.hdl_restartGpsService)
+        self.btn_closeApp.clicked.connect(self.close_app)
+        self.setEventOneSec()
+        
         resp = getMapImage(self.configs_data['deviceID'], example_lat, example_lng, getDate())
-
         if (resp != None):
             self.speedLimit = resp['speed_limit']
             self.setTextEdit(self.te_speedLimit,f'{self.speedLimit}','green')
+            self.appendEvents("Lấy ảnh bản đồ thành công")
+            # load lại ảnh bản đồ
+            self.viewMap(MAP_PATH)
         else:
+            self.appendEvents(f"Lấy ảnh bản đồ thất bại: {resp}")
             self.popup('warn',"Lỗi","Lấy ảnh bản đồ thất bại !","Vui lòng thử lại thủ công ở mục Cài đặt")
 
     # =============================== MÀN HOME
@@ -168,6 +210,11 @@ class MAIN(QMainWindow):
         self.loadConfigs()
         self.configs_data['deviceID'] = self.te_deviceID.toPlainText()
         self.saveConfigs()
+    
+    def hdl_changed_department(self):
+        self.loadConfigs()
+        self.configs_data['departmentCode'] = self.te_department.toPlainText()
+        self.saveConfigs()
 
     def hdl_checkService(self):
         pass
@@ -178,7 +225,14 @@ class MAIN(QMainWindow):
     def hdl_restartGpsService(self):
         pass
 
-
+    def close_app(self):
+        reply = QMessageBox.question(self, 'Đóng ứng dụng', 'Bạn có chắc không?',
+            QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+        if reply == QMessageBox.Yes:
+            self.close()
+        else:
+            pass
+        
     # =============================== HẾT MÀN SETTING
 
 if __name__ == "__main__":
