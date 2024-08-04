@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
+    <width>1140</width>
     <height>680</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1000</width>
+    <width>1140</width>
     <height>680</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>1000</width>
+    <width>1140</width>
     <height>680</height>
    </size>
   </property>
@@ -31,7 +31,7 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>1001</width>
+      <width>1141</width>
       <height>651</height>
      </rect>
     </property>
@@ -117,7 +117,7 @@
        <rect>
         <x>10</x>
         <y>0</y>
-        <width>941</width>
+        <width>1081</width>
         <height>501</height>
        </rect>
       </property>
@@ -138,7 +138,7 @@
         <rect>
          <x>0</x>
          <y>30</y>
-         <width>751</width>
+         <width>841</width>
          <height>471</height>
         </rect>
        </property>
@@ -157,10 +157,10 @@
       <widget class="QLabel" name="lbl_map">
        <property name="geometry">
         <rect>
-         <x>750</x>
+         <x>839</x>
          <y>30</y>
-         <width>190</width>
-         <height>290</height>
+         <width>241</width>
+         <height>471</height>
         </rect>
        </property>
        <property name="font">
