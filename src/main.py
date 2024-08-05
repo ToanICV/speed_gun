@@ -21,6 +21,8 @@ TODO
 [x] Nút getMapImage thủ công trong Setting.
 [ ] Hiển thị log
 [x] Đơn vị thực hiện - SETTING
+[ ] Kiem tra dia chi MAC hien tai cua Jetson
+[ ] 
 '''
 
 example_lat = 21.046242
